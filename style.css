@@ -1,0 +1,133 @@
+:root {
+  --light-purple: #a389e0;
+  --purple: #7646e7;
+  --dark-purple: #3d0998;
+  --darker-purple: #2c0751;
+  --scale: (1/1.1)
+}
+
+.image:hover {
+  transform: scale(1.1);
+}
+
+.image {
+  cursor: pointer;
+}
+
+h1 {
+  font-family: 'Tinos', serif;
+}
+
+header {
+  background-color: var(--light-purple);
+}
+
+.bg-main-bar-light-purple {
+  background-color: var(--light-purple);
+}
+
+.bg-main-bar-purple {
+  background-color: var(--purple);
+}
+
+.bg-main-bar-dark-purple {
+  background-color: var(--dark-purple);
+}
+
+.bg-main-bar-darker-purple {
+  background-color: var(--darker-purple);
+}
+
+.min-height {
+  min-height: 2rem;
+}
+
+.min-height-sm {
+  min-height: 0.5rem;
+}
+
+.min-height-xsm {
+  min-height: 0.74875rem;
+}
+
+.border-dark-purple {
+  border-color: var(--darker-purple) !important;
+}
+
+.col-6-special {
+  flex: 0 0 auto;
+  width: 48.75%;
+}
+
+.progress-0 {
+  width: 0%;
+}
+
+.progress-10 {
+  width: 10%;
+}
+
+.progress-20 {
+  width: 20%;
+}
+
+.progress-30 {
+  width: 30%;
+}
+
+.progress-40 {
+  width: 40%;
+}
+
+.progress-50 {
+  width: 50%;
+}
+
+.progress-60 {
+  width: 60%;
+}
+
+.progress-70 {
+  width: 70%;
+}
+
+.progress-80 {
+  width: 80%;
+}
+
+.progress-90 {
+  width: 90%;
+}
+
+.progress-100 {
+  width: 100%;
+}
+
+.no-margin {
+  margin: 0;
+}
+
+.border-radius-top-left {
+  border-top-left-radius: 1rem;
+}
+
+.border-radius-top-right {
+  border-top-right-radius: 1rem;
+}
+
+.border-radius-top {
+  border-top-left-radius: 1rem;
+  border-top-right-radius: 1rem;
+}
+
+.border-radius {
+  border-radius: 1rem;
+}
+
+.large-text {
+  font-size: 50pt;
+}
+
+.header-img-height {
+  height: 48px;
+}
