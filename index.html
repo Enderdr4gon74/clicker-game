@@ -32,16 +32,19 @@
 </style>
 <body class="">
   <header class="container-fluid">
-    <section class="row">
-      <div class="col-12 p-3 d-flex">
+    <section class="row p-4">
+      <div class="col-8 d-flex">
         <img src="IMG_2242.png" alt="Paimon" class="header-img-height">
-        <h1 class="ms-3 no-margin">PRIMOGEMS FARM</h1>
+        <h1 class="ms-3 no-margin text-light">PRIMOGEMS FARM</h1>
+      </div>
+      <div class="col-4 d-flex justify-content-end" id="totalPrimos">
+        <h3>Total Primogems Collected:  0</h3>
       </div>
     </section>
   </header>
   <main class="container-fluid">
     <!-- SECTION primogem image -->
-    <section class="row d-flex justify-content-center p-5">
+    <section class="row d-flex justify-content-center p-5 mb-10 mt-3">
       <div class="col-4 d-flex justify-content-center">
         <img onclick="clickPrimogem()" class="img-fluid image" src="img_2241.png" alt="Primogem" id="image">
       </div>

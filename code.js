@@ -1,5 +1,7 @@
 let primogems = 0;
+let totalPrimogems = 0;
 let progress = 0;
+let password = "PaSsWoRd!?!"
 
 let clickUpgrades = [
   {
@@ -44,6 +46,7 @@ function clickPrimogem() {
   }
   // add the clicked to the total amount of primogems and draw the page
   primogems += clicked;
+  totalPrimogems += clicked;
   saveObjects()
   drawPage()
   console.log("clicked")
@@ -62,11 +65,20 @@ function automaticClick() {
     primogemsCollectionModifier += (automaticUpgrades[i].amountPerSecond * automaticUpgrades[i].quantity) * automaticUpgrades[i].perSecond
   }
   primogems += primogemsCollectionModifier
+  totalPrimogems += primogemsCollectionModifier
   saveObjects()
   drawPage()
 }
 
 function drawPage() {
+  // SECTION header
+  let totalPrimosElement = document.getElementById("totalPrimos");
+  let totalPrimosTemplate = `
+  <h3 class="text-light">Total Primogems Collected:  <span class="text-success">${totalPrimogems}</span></h3>
+  `
+  if (totalPrimosElement && totalPrimosTemplate != "") {
+    totalPrimosElement.innerHTML = totalPrimosTemplate
+  }
   // SECTION Main bar top
   let clickElement = document.getElementById("amountPerClick");
   let clicked = 1;
@@ -197,6 +209,7 @@ function drawPageBottomLeft() {
   if (clickUpgradesBuy1Element && clickUpgradesBuy1Template != "") {
     clickUpgradesBuy1Element.innerHTML = clickUpgradesBuy1Template
   }
+  console.log(clickUpgrades[0].price + ", " + clickUpgrades[0].name + ", " + clickUpgrades[0].multiplier)
   let clickUpgradesBuy2Element = document.getElementById("clickUpgradeBuy2")
   let clickUpgradesBuy2Template = `
   <button onclick="buyClickerUpgrade(1)" class="btn btn-info me-3 text-light">${clickUpgrades[1].price} <i class="mdi mdi-star-four-points"></i></button>
@@ -208,6 +221,7 @@ function drawPageBottomLeft() {
   if (clickUpgradesBuy2Element && clickUpgradesBuy2Template != "") {
     clickUpgradesBuy2Element.innerHTML = clickUpgradesBuy2Template
   }
+  console.log(clickUpgrades[1].price + ", " + clickUpgrades[1].name + ", " + clickUpgrades[1].multiplier)
   let automaticUpgradesBuy1Element = document.getElementById("automaticUpdateBuy1")
   let fullTime1 = 1/automaticUpgrades[0].perSecond;
   let automaticUpgradesBuy1Template = `
@@ -220,6 +234,7 @@ function drawPageBottomLeft() {
   if (automaticUpgradesBuy1Element && automaticUpgradesBuy1Template != "") {
     automaticUpgradesBuy1Element.innerHTML = automaticUpgradesBuy1Template
   }
+  console.log(automaticUpgrades[0].price + ", " + automaticUpgrades[0].name + ", " + automaticUpgrades[0].amountPerSecond + " / " + fullTime1)
   let automaticUpgradesBuy2Element = document.getElementById("automaticUpdateBuy2")
   let fullTime2 = 1/automaticUpgrades[1].perSecond;
   let automaticUpgradesBuy2Template = `
@@ -232,6 +247,8 @@ function drawPageBottomLeft() {
   if (automaticUpgradesBuy2Element && automaticUpgradesBuy2Template != "") {
     automaticUpgradesBuy2Element.innerHTML = automaticUpgradesBuy2Template
   }
+  
+  console.log(automaticUpgrades[1].price + ", " + automaticUpgrades[1].name + ", " + automaticUpgrades[0].amountPerSecond + " / " + fullTime1)
 } 
 
 function progressUp() {
@@ -281,7 +298,17 @@ function buyAutomaticUpgrade(index) {
 }
 
 function saveObjects() {
-  let localItem = [primogems, clickUpgrades[0].quantity, clickUpgrades[1].quantity, automaticUpgrades[0].quantity, automaticUpgrades[1].quantity]
+  let i0 = primogems;
+  let i1 = clickUpgrades[0].quantity;
+  let i2 = clickUpgrades[0].price;
+  let i3 = clickUpgrades[1].quantity;
+  let i4 = clickUpgrades[1].price;
+  let i5 = automaticUpgrades[0].quantity;
+  let i6 = automaticUpgrades[0].price;
+  let i7 = automaticUpgrades[1].quantity;
+  let i8 = automaticUpgrades[1].price;
+  let i9 = totalPrimogems;
+  let localItem = [i0, i1, i2, i3, i4, i5, i6, i7, i8, i9]
   window.localStorage.setItem("primogemFarm", JSON.stringify(localItem))
   console.log("saved objects")
 }
@@ -294,18 +321,29 @@ function loadObjects() {
     console.log(localItems[0])
     clickUpgrades[0].quantity = localItems[1]
     console.log(localItems[1])
-    clickUpgrades[1].quantity = localItems[2]
+    clickUpgrades[0].price = localItems[2]
     console.log(localItems[2])
-    automaticUpgrades[0].quantity = localItems[3]
+    clickUpgrades[1].quantity = localItems[3]
     console.log(localItems[3])
-    automaticUpgrades[1].quantity = localItems[4]
+    clickUpgrades[1].price = localItems[4]
     console.log(localItems[4])
+    automaticUpgrades[0].quantity = localItems[5]
+    console.log(localItems[5])
+    automaticUpgrades[0].price = localItems[6]
+    console.log(localItems[6])
+    automaticUpgrades[1].quantity = localItems[7]
+    console.log(localItems[7])
+    automaticUpgrades[1].price = localItems[8]
+    console.log(localItems[8])
+    totalPrimogems = localItems[9]
+    console.log(localItems[9])
   }
 }
 
 function setPrimosTo(number, string) {
-  if (string == "PaSsWoRd!?!") {
+  if (string == password) {
     primogems = number
+    totalPrimogems = number
     drawPage()
     saveObjects()
     console.log("It has been done...")
@@ -315,7 +353,7 @@ function setPrimosTo(number, string) {
 }
 
 function resetUpgrades(string) {
-  if (string == "PaSsWoRd!?!") {
+  if (string == password) {
     for (let i = 0; i < clickUpgrades.length; i++) {
       clickUpgrades[i].quantity = 0;
     } for (let i = 0; i < automaticUpgrades.length; i++) {
@@ -326,7 +364,35 @@ function resetUpgrades(string) {
   } else {
     console.log("Incorrect Password!")
   }
-  drawPage()
+  setTimeout(drawPage, 1000)
+  setTimeout(drawPageBottomLeft, 1000)  
+}
+
+function resetPrices(string) {
+  if (string == password) {
+    clickUpgrades[0].price = 100;
+    clickUpgrades[1].price = 500;
+    automaticUpgrades[0].price = 1000;
+    automaticUpgrades[1].price = 5000; 
+    saveObjects()
+    console.log("It has been done...")
+  } else {
+    console.log("Incorrect Password!")
+  }
+  setTimeout(drawPage, 1000)
+  setTimeout(drawPageBottomLeft, 1000)  
+}
+
+function resetAll(string) {
+  if (string == password) {
+    setPrimosTo(0, "PaSsWoRd!?!")
+    resetUpgrades("PaSsWoRd!?!")
+    resetPrices("PaSsWoRd!?!")
+    saveObjects()
+    console.log("It has been done...")
+  } else {
+    console.log("Incorrect Password!")
+  }
 }
 
 // setInterval(saveObjects, 1000)

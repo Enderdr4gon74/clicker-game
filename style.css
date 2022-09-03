@@ -19,7 +19,7 @@ h1 {
 }
 
 header {
-  background-color: var(--light-purple);
+  background-color: var(--light-purple) !important;
 }
 
 .bg-main-bar-light-purple {
@@ -130,4 +130,15 @@ header {
 
 .header-img-height {
   height: 48px;
+}
+
+body {
+  background: url(Genshin_Impact_Background.jpg);
+  background-size: 150vw;
+  background-position-x: center;
+  background-position-y: center;
+}
+
+.mb-10 {
+  margin-bottom: 5rem;
 }
